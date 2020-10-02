@@ -8,4 +8,5 @@ class Product {
     private String ProductDesc;
     private int VendorID;
     private double Price;
+    private int Quantity;
 }

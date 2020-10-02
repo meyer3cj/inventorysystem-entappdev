@@ -7,6 +7,7 @@ import com.inventorysystem.inventory.dao.IProductDAO;
 
 @Service
 public class ProductServiceStub implements IProductService {
+
     @Autowired
     private IProductDAO productDAO;
 
@@ -24,6 +25,7 @@ public class ProductServiceStub implements IProductService {
 
     @Override
     public List<Product> displayProducts() {
+
         return productDAO.displayProducts();
     }
 
