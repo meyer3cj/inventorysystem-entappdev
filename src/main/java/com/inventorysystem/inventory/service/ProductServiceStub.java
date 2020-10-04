@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import com.inventorysystem.inventory.dao.IProductDAO;
 
+/**
+ * Service class stub for Products.
+ */
 @Service
 public class ProductServiceStub implements IProductService {
 

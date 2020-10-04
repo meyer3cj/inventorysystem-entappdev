@@ -6,10 +6,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/** Data Access Object Stub Class for Products.
+ *
+ */
+
 @Repository
 public class ProductDAOStub implements IProductDAO {
     Map<Integer, Product> allProudcts = new HashMap<>();
 
+    /**
+     * Adds products to a list
+     * @param product Product Object
+     * @return product
+     * @throws Exception
+     */
     @Override
     public Product addItem(Product product) throws Exception {
         Integer productID = product.getProductID();
@@ -17,12 +27,21 @@ public class ProductDAOStub implements IProductDAO {
         return product;
     }
 
+    /**
+     * Displays all Products in the list.
+     * @return
+     */
     @Override
     public List<Product> displayProducts() {
         List<Product> returnProducts = new ArrayList(allProudcts.values());
         return returnProducts;
     }
 
+    /**
+     * Discontinues a product based on ProductID.
+     * @param id
+     * @throws Exception
+     */
     @Override
     public void discontinueItem(int id) throws Exception {
         allProudcts.remove(id);

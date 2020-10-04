@@ -32,6 +32,12 @@ public class VendorProfitController {
        model.addAttribute(product);
         return "main";
     }
+
+    /**
+     * handles /addProduct endpoint
+     * @param product Product
+     * @return main.html
+     */
     @RequestMapping("/addProduct")
     public String addProduct(Product product){
         try{
@@ -42,12 +48,21 @@ public class VendorProfitController {
         }
         return "main";
     }
+
+     /** GetMapping for /product endpoint
+     * @return all products entered.
+     */
     @GetMapping("/product")
     @ResponseBody
     public List<Product> fetchAllProducts(){
         return productService.displayProducts();
     }
 
+    /**
+     * PostMApping for /product endpoint
+     * @param product product
+     * @return Product entered
+     */
     @PostMapping(value="/product", consumes="application/json", produces="application/json")
     @ResponseBody
     public Product createProduct(@RequestBody Product product){
@@ -60,6 +75,12 @@ public class VendorProfitController {
         }
         return newProduct;
     }
+
+    /**
+     * DeleteMapping for product/{id} endpoint
+     * @param id ID for deletion
+     * @return HTTP Status Code
+     */
     @DeleteMapping("product/{id}")
     public ResponseEntity discontinueProduct(@PathVariable("id") int id){
         try{
