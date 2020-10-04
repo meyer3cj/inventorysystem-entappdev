@@ -12,7 +12,7 @@ public class ProductDAOStub implements IProductDAO {
 
     @Override
     public Product addItem(Product product) throws Exception {
-        Integer productID = product.getProudctID();
+        Integer productID = product.getProductID();
         allProudcts.put(productID, product);
         return product;
     }

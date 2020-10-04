@@ -18,20 +18,19 @@ public class VendorProfitController {
 
     /**
      * Handle the / endpoint
-     * @return
+     * @return main.html
      */
     @RequestMapping("/")
-    public String index(Model model) {
-        Product product = new Product();
-        product.setProudctID(1);
-        product.setProductName("Peanut Butter");
-        product.setVendorID(10);
-        product.setProductDesc("pretty good peanut butter");
-        product.setPrice(1.90);
-        product.setQuantity(250);
-        model.addAttribute(product);
-
-        return "start";
+    public String start(Model model) {
+       Product product = new Product();
+       product.setProductID(1);
+       product.setProductName("Peanut butter");
+       product.setVendorID(12);
+       product.setProductDesc("good Peanuts");
+       product.setPrice(1);
+       product.setQuantity(300);
+       model.addAttribute(product);
+        return "main";
     }
     @RequestMapping("/addProduct")
     public String addProduct(Product product){
@@ -39,9 +38,9 @@ public class VendorProfitController {
             productService.addItem(product);
         } catch (Exception e){
             e.printStackTrace();
-            return "start";
+            return "main";
         }
-        return "start";
+        return "main";
     }
     @GetMapping("/product")
     @ResponseBody

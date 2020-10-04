@@ -3,7 +3,7 @@ import lombok.Data;
 
 public @Data
 class Product {
-    private int ProudctID;
+    private int ProductID;
     private String ProductName;
     private String ProductDesc;
     private int VendorID;
