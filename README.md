@@ -55,19 +55,19 @@ Our audience is a business that sells certain items.
 {    
 "type" : "object",   
 "properties" : {   
-"productid" : {  
+"productId" : {  
 "type" : "integer"  
 },  
-"productname" : {  
+"productName" : {  
 "type" : "string"  
 }, 
-"proudtnumber" : {  
+"productNumber" : {  
 "type" : "string"  
 },  
 "vendorID" : {  
 "type" : "integer"  
 },  
-"productdesc" : {  
+"productDesc" : {  
 "type" : "string"  
   }  
  }  
