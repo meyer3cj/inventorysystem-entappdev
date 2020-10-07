@@ -7,68 +7,64 @@ import com.inventorysystem.inventory.service.IProductService;
 import com.inventorysystem.inventory.service.ProductServiceStub;
 import com.inventorysystem.inventory.dto.Product;
 import com.inventorysystem.inventory.dao.IProductDAO;
-import com.inventorysystem.inventory.dao.ProductDAOStub;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import com.inventorysystem.inventory.dao.ProductDAOStub;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 @SpringBootTest
 class InventoryApplicationTests {
     private IProductService productService;
-    private Product product = new Product();
-    private Product product2 = new Product();
+    private Product productPaperCup = new Product();
+    private Product productDairyButter = new Product();
 
     @MockBean
     private IProductDAO productDAO;
 
     @Test
-    void contextLoads() {
-    }
-
-    @Test
-    void addPaperCupAndReturnIt() throws Exception{
+    void addPaperCupToCatalogAndConfirm() throws Exception{
         givenProductDataAvailable();
-        whenUserCreatesAProduct();
-        thenAddProductAndReturn();
+        whenUserCreatesAProductPaperCup();
+        thenAddProductPaperCupToCatalogAndConfirm();
     }
     @Test
-    void DiscontinueAProduct() throws Exception{
+    void DiscontinueProductDairyButterAndConfirm() throws Exception{
         givenProductDataAvailable();
-        whenUserCreatesAProduct2();
-        whenUserDiscontinueProduct();
-        thenUserDiscontinueProduct();
+        whenUserCreatesProductDairyButter();
+        whenUserDiscontinuesProductDairyButter();
+        thenProductDairyButterNotInCatalog();
     }
 
     private void givenProductDataAvailable() throws Exception{
-        Mockito.when(productDAO.addItem(product)).thenReturn(product);
+        Mockito.when(productDAO.addItem(productPaperCup)).thenReturn(productPaperCup);
         productService = new ProductServiceStub(productDAO);
     }
-    private void whenUserCreatesAProduct(){
-        product.setProductID(15);
-        product.setProductName("Paper Cup");
-        product.setVendorID(25);
-        product.setQuantity(400);
-        product.setPrice(2);
-        product.setProductDesc("Hefty pApER cups");
+    private void whenUserCreatesAProductPaperCup(){
+        productPaperCup.setProductID(15);
+        productPaperCup.setProductName("Paper Cup");
+        productPaperCup.setVendorID(25);
+        productPaperCup.setQuantity(400);
+        productPaperCup.setPrice(2);
+        productPaperCup.setProductDesc("Hefty pApER cups");
 
     }
-    private void whenUserCreatesAProduct2() throws  Exception{
-        product2.setProductID(17);
-        product2.setProductName("Butter");
-        product2.setVendorID(3);
-        product2.setQuantity(225);
-        product2.setPrice(1);
-        product2.setProductDesc("Dairy Butter");
-        product2 = productService.addItem(product2);
+    private void whenUserCreatesProductDairyButter() throws  Exception{
+        productDairyButter.setProductID(17);
+        productDairyButter.setProductName("Butter");
+        productDairyButter.setVendorID(3);
+        productDairyButter.setQuantity(225);
+        productDairyButter.setPrice(1);
+        productDairyButter.setProductDesc("Dairy Butter");
+        productDairyButter = productService.addItem(productDairyButter);
     }
-    private void whenUserDiscontinueProduct() throws Exception{
+    private void whenUserDiscontinuesProductDairyButter() throws Exception{
       productService.discontinueItem(17);
     }
-    private void thenUserDiscontinueProduct() throws Exception{
-        assertEquals(null, product2);
+    private void thenProductDairyButterNotInCatalog() throws Exception{
+        assertNull(productDairyButter);
     }
-    private void thenAddProductAndReturn() throws Exception{
-        Product createdProduct = productService.addItem(product);
-        assertEquals(product, createdProduct);
+    private void thenAddProductPaperCupToCatalogAndConfirm() throws Exception{
+        Product createdProduct = productService.addItem(productPaperCup);
+        assertEquals(productPaperCup, createdProduct);
     }
 
 }
