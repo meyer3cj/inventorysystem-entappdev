@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Repository
 public class ProductDAOStub implements IProductDAO {
-    Map<Integer, Product> allProudcts = new HashMap<>();
+    Map<Integer, Product> allProducts = new HashMap<>();
 
     /**
      * Adds products to a list
@@ -23,28 +23,28 @@ public class ProductDAOStub implements IProductDAO {
     @Override
     public Product addItem(Product product) throws Exception {
         Integer productID = product.getProductID();
-        allProudcts.put(productID, product);
+        allProducts.put(productID, product);
         return product;
     }
 
     /**
      * Displays all Products in the list.
-     * @return
+     * @return a List containing values from allProducts HashMap
      */
     @Override
     public List<Product> displayProducts() {
-        List<Product> returnProducts = new ArrayList(allProudcts.values());
+        List<Product> returnProducts = new ArrayList(allProducts.values());
         return returnProducts;
     }
 
     /**
      * Discontinues a product based on ProductID.
-     * @param id
+     * @param id a unique identifier for product to discontinue
      * @throws Exception
      */
     @Override
     public void discontinueItem(int id) throws Exception {
-        allProudcts.remove(id);
+        allProducts.remove(id);
 
     }
 }
