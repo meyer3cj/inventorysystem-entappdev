@@ -10,13 +10,11 @@ import com.inventorysystem.inventory.dao.IProductDAO;
  */
 @Service
 public class ProductServiceStub implements IProductService {
-
     @Autowired
     private IProductDAO productDAO;
 
-    public ProductServiceStub(){
+    public ProductServiceStub() { }
 
-    }
     public ProductServiceStub(IProductDAO productDAO){
         this.productDAO = productDAO;
     }
@@ -28,13 +26,11 @@ public class ProductServiceStub implements IProductService {
 
     @Override
     public List<Product> displayProducts() {
-
         return productDAO.displayProducts();
     }
 
     @Override
     public void discontinueItem(int id) throws Exception {
         productDAO.discontinueItem(id);
-
     }
 }
