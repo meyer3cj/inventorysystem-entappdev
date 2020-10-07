@@ -11,5 +11,4 @@ public interface IProductDAO {
     List<Product> displayProducts();
 
     void discontinueItem(int id) throws Exception;
-
 }
