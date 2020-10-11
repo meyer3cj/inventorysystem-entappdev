@@ -3,10 +3,10 @@ import lombok.Data;
 
 public @Data
 class Product {
-    private int ProductID;
-    private String ProductName;
-    private String ProductDesc;
-    private int VendorID;
-    private double Price;
-    private int Quantity;
+    private int productID;
+    private String productName;
+    private String productDesc;
+    private int vendorID;
+    private double price;
+    private int quantity;
 }

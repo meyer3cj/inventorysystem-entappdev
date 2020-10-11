@@ -30,7 +30,8 @@ public class VendorProfitController {
        product.setPrice(1);
        product.setQuantity(300);
        model.addAttribute(product);
-        return "main";
+
+       return "main";
     }
 
     /**
@@ -49,10 +50,16 @@ public class VendorProfitController {
         return "main";
     }
 
-     /** GetMapping for /product endpoint
+     /** GetMapping for /view-products endpoint
      * @return all products entered.
      */
-    @GetMapping("/product")
+
+     @RequestMapping("/view-inventory")
+
+     public String viewInventory(){
+         return "view-inventory";
+     }
+
     @ResponseBody
     public List<Product> fetchAllProducts(){
         return productService.displayProducts();
