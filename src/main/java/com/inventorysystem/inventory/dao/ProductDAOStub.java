@@ -22,8 +22,8 @@ public class ProductDAOStub implements IProductDAO {
      */
     @Override
     public Product addItem(Product product) throws Exception {
-        Integer productID = product.getProductID();
-        allProudcts.put(productID, product);
+        Integer productSKU = product.getProductSKU();
+        allProudcts.put(productSKU, product);
         return product;
     }
 
@@ -38,13 +38,13 @@ public class ProductDAOStub implements IProductDAO {
     }
 
     /**
-     * Discontinues a product based on ProductID.
-     * @param id
+     * Discontinues a product based on ProductSKU.
+     * @param sku
      * @throws Exception
      */
     @Override
-    public void discontinueItem(int id) throws Exception {
-        allProudcts.remove(id);
+    public void discontinueItem(int sku) throws Exception {
+        allProudcts.remove(sku);
 
     }
 }

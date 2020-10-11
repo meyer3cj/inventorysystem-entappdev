@@ -33,8 +33,8 @@ public class ProductServiceStub implements IProductService {
     }
 
     @Override
-    public void discontinueItem(int id) throws Exception {
-        productDAO.discontinueItem(id);
+    public void discontinueItem(int sku) throws Exception {
+        productDAO.discontinueItem(sku);
 
     }
 }

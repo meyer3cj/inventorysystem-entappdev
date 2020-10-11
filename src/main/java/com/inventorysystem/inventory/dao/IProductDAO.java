@@ -10,6 +10,6 @@ public interface IProductDAO {
 
     List<Product> displayProducts();
 
-    void discontinueItem(int id) throws Exception;
+    void discontinueItem(int sku) throws Exception;
 
 }

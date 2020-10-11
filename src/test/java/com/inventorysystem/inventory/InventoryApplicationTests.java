@@ -43,7 +43,7 @@ class InventoryApplicationTests {
         productService = new ProductServiceStub(productDAO);
     }
     private void whenUserCreatesAProduct(){
-        product.setProductID(15);
+        product.setProductSKU(15);
         product.setProductName("Paper Cup");
         product.setVendorID(25);
         product.setQuantity(400);
@@ -52,7 +52,7 @@ class InventoryApplicationTests {
 
     }
     private void whenUserCreatesAProduct2() throws  Exception{
-        product2.setProductID(17);
+        product2.setProductSKU(17);
         product2.setProductName("Butter");
         product2.setVendorID(3);
         product2.setQuantity(225);

@@ -23,7 +23,7 @@ public class VendorProfitController {
     @RequestMapping("/")
     public String start(Model model) {
        Product product = new Product();
-       product.setProductID(1);
+       product.setProductSKU(1);
        product.setProductName("Peanut butter");
        product.setVendorID(12);
        product.setProductDesc("good Peanuts");
@@ -77,14 +77,14 @@ public class VendorProfitController {
     }
 
     /**
-     * DeleteMapping for product/{id} endpoint
-     * @param id ID for deletion
+     * DeleteMapping for product/{sku} endpoint
+     * @param sku Stock Keeping Unit for deletion
      * @return HTTP Status Code
      */
-    @DeleteMapping("product/{id}")
-    public ResponseEntity discontinueProduct(@PathVariable("id") int id){
+    @DeleteMapping("product/{sku}")
+    public ResponseEntity discontinueProduct(@PathVariable("sku") int sku){
         try{
-            productService.discontinueItem(id);
+            productService.discontinueItem(sku);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
