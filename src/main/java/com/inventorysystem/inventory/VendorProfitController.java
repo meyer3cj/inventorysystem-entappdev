@@ -12,7 +12,6 @@ import java.util.List;
 
 @Controller
 public class VendorProfitController {
-
     @Autowired
     IProductService productService;
 
@@ -49,7 +48,7 @@ public class VendorProfitController {
         return "main";
     }
 
-     /** GetMapping for /product endpoint
+    /** GetMapping for /product endpoint
      * @return all products entered.
      */
     @GetMapping("/product")
@@ -59,7 +58,7 @@ public class VendorProfitController {
     }
 
     /**
-     * PostMApping for /product endpoint
+     * PostMapping for /product endpoint
      * @param product product
      * @return Product entered
      */
@@ -90,5 +89,4 @@ public class VendorProfitController {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }
