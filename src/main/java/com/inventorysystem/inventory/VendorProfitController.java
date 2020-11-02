@@ -1,6 +1,8 @@
 package com.inventorysystem.inventory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +37,7 @@ public class VendorProfitController {
     /**
      * handles /addProduct endpoint
      * @param product Product
-     * @return main.html
+     * @return main.html or error.html if something goes wrong.
      */
     @RequestMapping("/addProduct")
     public String addProduct(Product product){
@@ -43,7 +45,7 @@ public class VendorProfitController {
             productService.addItem(product);
         } catch (Exception e){
             e.printStackTrace();
-            return "main";
+            return "error";
         }
         return "main";
     }
@@ -58,22 +60,29 @@ public class VendorProfitController {
     }
 
     /**
-     * PostMapping for /product endpoint
-     * @param product product
-     * @return Product entered
+     * Create a new product object, given the data provided.
+     *
+     * returns one of the following status codes:
+     * 201: successfully created a new product.
+     * 409: unable to create a product, because it already exists.
+     *
+     * @param product a JSON representation of a product object.
+     * @return the newly created product object.
      */
     @PostMapping(value="/product", consumes="application/json", produces="application/json")
-    @ResponseBody
-    public Product createProduct(@RequestBody Product product){
+    public ResponseEntity createProduct(@RequestBody Product product) {
         Product newProduct = null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
         try {
             newProduct = productService.addItem(product);
-        } catch (Exception e)
-        {
-            e.printStackTrace();
+        } catch (Exception e) {
+
+            return new ResponseEntity(headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return newProduct;
+        return new ResponseEntity(newProduct, headers, HttpStatus.OK);
     }
+
 
     /**
      * DeleteMapping for product/{id} endpoint
@@ -88,5 +97,23 @@ public class VendorProfitController {
         } catch (Exception e){
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    /**
+     * Handle the profits endpoint and return the page.
+     * @return profits.html
+     */
+    @RequestMapping("/profits")
+    public String profits() {
+        return "profits";
+    }
+
+    /**
+     * Handle the purchases endpoint and return the page.
+     * @return purchases.html
+     */
+    @RequestMapping("/purchases")
+    public String purchases() {
+        return "purchases";
     }
 }
