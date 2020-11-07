@@ -12,7 +12,7 @@ public interface IProductDAO {
 
     List<Product> displayProducts();
 
-    List<Product> fetchProducts(String combinedName) throws Exception;
+    List<Product> getProducts(String combinedName) throws Exception;
 
     void discontinueItem(int id) throws Exception;
 }
