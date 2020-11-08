@@ -37,6 +37,11 @@ public class ProductDAOStub implements IProductDAO {
         return returnProducts;
     }
 
+    public Product displayProduct(Integer productID) {
+        Product returnProduct = allProducts.get(productID);
+        return returnProduct;
+    }
+
     /**
      * Discontinues a product based on ProductID.
      * @param id a unique identifier for product to discontinue
