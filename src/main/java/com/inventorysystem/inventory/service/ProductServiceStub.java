@@ -16,6 +16,7 @@ public class ProductServiceStub implements IProductService {
     public ProductServiceStub() { }
 
     public ProductServiceStub(IProductDAO productDAO){
+
         this.productDAO = productDAO;
     }
 
@@ -26,6 +27,7 @@ public class ProductServiceStub implements IProductService {
 
     @Override
     public List<Product> displayProducts() {
+
         return productDAO.displayProducts();
     }
 

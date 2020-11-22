@@ -1,4 +1,6 @@
 package com.inventorysystem.inventory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -10,12 +12,15 @@ import org.springframework.web.bind.annotation.*;
 import com.inventorysystem.inventory.dto.Product;
 import com.inventorysystem.inventory.service.IProductService;
 
+import javax.swing.event.HyperlinkEvent;
 import java.util.List;
 
 @Controller
 public class VendorProfitController {
     @Autowired
     IProductService productService;
+
+    Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * Handle the / endpoint
@@ -41,10 +46,12 @@ public class VendorProfitController {
      */
     @RequestMapping("/addProduct")
     public String addProduct(Product product){
+        log.debug("Entering the add product endpoint");
         try{
             productService.addItem(product);
+            log.info ("Product  " + product.getProductName() + " was added");
         } catch (Exception e){
-            e.printStackTrace();
+            log.error("Unable to add product " + product.getProductName() + ", message: " + e.getMessage(), e);
             return "error";
         }
         return "main";
@@ -56,6 +63,7 @@ public class VendorProfitController {
     @GetMapping("/product")
     @ResponseBody
     public List<Product> fetchAllProducts(){
+
         return productService.displayProducts();
     }
 
@@ -91,10 +99,13 @@ public class VendorProfitController {
      */
     @DeleteMapping("product/{id}")
     public ResponseEntity discontinueProduct(@PathVariable("id") int id){
+        log.debug("Entering the discontinue product endpoint");
         try{
             productService.discontinueItem(id);
+            log.info("Product with the ID of " + id + " was discontinued");
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e){
+            log.error("Unable to delete product with ID of " + id + " , message: " + e.getMessage(), e);
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -105,6 +116,7 @@ public class VendorProfitController {
      */
     @RequestMapping("/profits")
     public String profits() {
+
         return "profits";
     }
 
@@ -114,6 +126,7 @@ public class VendorProfitController {
      */
     @RequestMapping("/purchases")
     public String purchases() {
+
         return "purchases";
     }
 }
