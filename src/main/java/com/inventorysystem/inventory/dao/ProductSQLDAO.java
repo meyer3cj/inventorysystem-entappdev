@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("ProductDAO")
+@Repository("productDAO")
 public class ProductSQLDAO implements IProductDAO{
     @Autowired
     ProductRepository productRepository;
